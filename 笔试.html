@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var arr = [3, 5, 7];
+        var player = 1;
+        while (true) {
+            var num = parseInt(prompt("请输入" + player + "号玩家拿牙签的列数（1-" + arr.length + "）", ""), 10);
+            if(isNaN(num)){
+                alert("请输入内容")
+                continue
+            }
+            if (num < 0 || num > arr.length) {
+                alert("列数数目错误，请重新输入")
+                continue
+            }
+            var lastnum = num
+            if (!(lastnum == num || lastnum == num + 1 || lastnum == num - 1)) {
+                alert("列数只能选择相邻的")
+                continue
+            }
+            var n = parseInt(prompt("请输入" + player + "号玩家拿牙签的数目（1-" + arr[num - 1] + "）", ""), 10);
+            if(isNaN(n)){
+                alert("请输入内容")
+                continue
+            }
+            if (n < 1 || n > arr[num - 1]) {
+                alert("牙签的数目错误，请重新输入！");
+                continue;
+            }
+            arr[num - 1] -= n;
+            if (arr[num - 1] == 0)
+                arr.splice(num - 1, 1);
+            alert("剩余牙签的数目：" + arr);
+            if (arr.length > 0) {
+                player = player == 1 ? 2 : 1;
+            } else {
+                break;
+            }
+        }
+        alert(player + "号玩家输了！");
+    </script>
+</body>
+
+</html>
